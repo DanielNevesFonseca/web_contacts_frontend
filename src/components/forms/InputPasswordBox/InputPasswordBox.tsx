@@ -12,8 +12,8 @@ export const InputPasswordBox = forwardRef(
     const [isVisible, setIsVisible] = useState(false);
 
     return (
-      <div className={``}>
-        <label htmlFor="loginInputPassword">{label}</label>
+      <div className={`inputBox inputBoxPassword`}>
+        <label className="text-sm-normal" htmlFor="loginInputPassword">{label}</label>
 
         <input
           type={isVisible ? "text" : "password"}

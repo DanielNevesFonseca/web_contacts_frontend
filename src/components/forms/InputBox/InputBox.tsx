@@ -8,8 +8,8 @@ export const InputBox = forwardRef(
     ref: React.ForwardedRef<HTMLInputElement>
   ) => {
     return (
-      <div className={``}>
-        <label htmlFor="loginInputEmail">{label}</label>
+      <div className={`inputBox`}>
+        <label className="text-sm-normal" htmlFor="loginInputEmail">{label}</label>
         <input {...rest} ref={ref} className="input" />
         <span>{error?.message}</span>
       </div>

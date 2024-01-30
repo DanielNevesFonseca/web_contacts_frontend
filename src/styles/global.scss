@@ -1,0 +1,32 @@
+:root {
+  --color-primary: #226464;
+  --color-primary-dark: #013232;
+  --color-primary-light: #639595;
+  --color-dark-grey: #616161;
+  --color-light-grey: #F4F4F4;
+  --color-white: #fff;
+  --color-black: #000;
+  --font-primary: 'Montserrat', sans-serif;
+}
+
+body,
+html {
+  font-family: var(--font-primary);
+  min-height: 100dvh;
+  min-width: 100%;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--color-grey-1);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 12px;
+}

@@ -18,7 +18,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
+    <form className="form" onSubmit={handleSubmit(submit)}>
       <InputBox
         {...register("email")}
         type="text"
@@ -38,7 +38,7 @@ export const LoginForm = () => {
         label="Senha"
       />
 
-      <button type="submit">Entrar</button>
+      <button className="button btn-default" type="submit">Entrar</button>
     </form>
   );
 };
