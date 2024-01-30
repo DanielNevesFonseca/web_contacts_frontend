@@ -1,7 +1,9 @@
+import { MainRoutes } from "./routes/MainRoutes";
+
 export const App = () => {
   return (
     <>
-      <h1>Fuck this shit!</h1>
+      <MainRoutes/>
     </>
   );
 };
