@@ -16,5 +16,20 @@
       background-color: var(--color-primary);
     }
   }
+
+  &.btn-outline{
+    border-color: var(--color-primary-light);
+    color: var(--color-primary-dark);
+
+    &:hover{
+      background-color: var(--color-primary-dark);
+      color: var(--color-white);
+    }
+  }
+
+  &.btn-sm{
+    font-size: 0.75rem;
+    
+  }
 }
 

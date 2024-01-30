@@ -38,7 +38,9 @@ export const LoginForm = () => {
         label="Senha"
       />
 
-      <button className="button btn-default" type="submit">Entrar</button>
+      <button className="button btn-default" type="submit">
+        Entrar
+      </button>
     </form>
   );
 };
