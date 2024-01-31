@@ -1,10 +1,23 @@
 .header {
   display: flex;
   justify-content: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
+  padding: 30px;
+  padding-bottom: 30px;
+  width: 100%;
+
 
   > img {
     max-width: 150px;
+  }
+}
+
+.headerDashboard {
+  @extend .header;
+  background-color: var(--color-primary);
+  justify-content: space-between;
+  width: calc(100% + 32px);
+
+  > a {
+    width: fit-content;
   }
 }

@@ -1,0 +1,40 @@
+.mainSection {
+  min-height: calc(100dvh - 98px - 64px);
+  width: calc(100% + 32px);
+}
+
+.infoUser {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.contactSection {
+  background-color: var(--color-primary);
+  height: calc(100% - 70px);
+
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contactHeader {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 30px;
+  margin-right: 30px;
+
+  >h5 {
+    color: var(--color-white);
+  }
+
+  >input {
+    width: 350px;
+  }
+
+  >button {
+    width: fit-content;
+  }
+}
+

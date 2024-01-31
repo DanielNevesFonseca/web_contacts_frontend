@@ -1,0 +1,19 @@
+
+.contactsList{
+  background-color: var(--color-primary-light);
+  height: 100%;
+  margin: 30px;
+  padding: 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.emptyMessage {
+  color: var(--color-white);
+  display: flex;
+  justify-content: center;
+}
