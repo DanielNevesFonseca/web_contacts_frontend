@@ -6,6 +6,10 @@
 .infoUser {
   text-align: center;
   margin: 20px auto;
+
+  span{
+    color: var(--color-primary);
+  }
 }
 
 .contactSection {

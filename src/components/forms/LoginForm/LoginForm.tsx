@@ -3,8 +3,12 @@ import { TLoginFormValues, LoginFormSchema } from "./LoginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputBox } from "../InputBox/InputBox";
 import { InputPasswordBox } from "../InputPasswordBox/InputPasswordBox";
+import { useContext } from "react";
+import { UserContext } from "../../../providers/UserContext/UserContext";
 
 export const LoginForm = () => {
+  const { login } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
@@ -14,7 +18,7 @@ export const LoginForm = () => {
   });
 
   const submit: SubmitHandler<TLoginFormValues> = async (formData) => {
-    console.log(formData);
+    login(formData);
   };
 
   return (

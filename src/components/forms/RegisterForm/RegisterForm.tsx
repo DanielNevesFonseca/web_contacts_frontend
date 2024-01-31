@@ -3,9 +3,12 @@ import { InputBox } from "../InputBox/InputBox";
 import { RegisterFormSchema, TRegisterFormValues } from "./RegisterFormSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputPasswordBox } from "../InputPasswordBox/InputPasswordBox";
-import { number } from "zod";
+import { useContext } from "react";
+import { UserContext } from "../../../providers/UserContext/UserContext";
 
 export const RegisterForm = () => {
+  const { registerUser } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
@@ -15,7 +18,7 @@ export const RegisterForm = () => {
   });
 
   const submit: SubmitHandler<TRegisterFormValues> = async (formData) => {
-    console.log(formData);
+    registerUser(formData);
   };
 
   return (
@@ -55,15 +58,6 @@ export const RegisterForm = () => {
         id="registerInputPassword"
         label="Senha"
       />
-      <InputPasswordBox
-        {...register("confirm_password")}
-        error={errors.confirm_password}
-        placeholder="Confirme sua senha"
-        autoComplete="off"
-        id="registerInputConfirmPassword"
-        label="Confirmar Senha"
-      />
-
       <button type="submit" className="button btn-default">
         Cadastrar
       </button>

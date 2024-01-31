@@ -1,14 +1,19 @@
 import styles from "./styles.module.scss";
 import TrashIcon from "../../../assets/icons/delete_trashcan_icon.svg";
 import PencilIcon from "../../../assets/icons/edit_pencil_icon.svg"
+import { IContactObj } from "../../../interfaces/user.interfaces";
 
-export const ContactsCard = () => {
+interface IContactCardProps {
+  contactData: IContactObj | null
+}
+
+export const ContactsCard = ({contactData}: IContactCardProps) => {
   return (
     <li className={`${styles.contactCard}`}>
       <div>
-        <h5 className="title5">Daniel Neves</h5>
-        <p>daniel@mail.com</p>
-        <p>32999691769</p>
+        <h5 className="title5">{contactData?.fullname}</h5>
+        <p>{contactData?.email}</p>
+        <p>{contactData?.phone_number}</p>
       </div>
 
       <div>

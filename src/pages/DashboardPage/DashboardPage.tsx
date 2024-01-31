@@ -1,12 +1,20 @@
+import { useContext, useEffect } from "react";
 import { ContactsList } from "../../components/ContactsList/ContactsList";
 import { TemplatePage } from "../../components/TemplatePage/TemplatePage";
 import styles from "./styles.module.scss";
+import { UserContext } from "../../providers/UserContext/UserContext";
 export const DashboardPage = () => {
+  const {getUserData, userData} = useContext(UserContext)
+
+  useEffect(() => {
+    getUserData()
+  }, [])
+
   return (
     <TemplatePage>
       <section className={`${styles.mainSection}`}>
         <div className={`${styles.infoUser}`}>
-          <h5 className="title5">Seja Bem Vindo ao WebContacts NomeDoUser!</h5>
+          <h5 className="title5">Seja Bem Vindo ao WebContacts <span>{userData?.fullname}</span></h5>
         </div>
 
         <div className={`${styles.contactSection}`}>
@@ -20,7 +28,6 @@ export const DashboardPage = () => {
             <button className="button btn-outline btn-sm">+ Criar</button>
           </div>
           
-          {/* // componente de list de contatos */}
           <ContactsList />
         
         </div>
