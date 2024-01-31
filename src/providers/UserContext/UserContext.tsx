@@ -12,6 +12,8 @@ export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
+  const [removeContactInfo, setRemoveContactInfo] =
+    useState<IContactObj | null>(null);
 
   const [userData, setUserData] = useState<IUserObj | null>(null);
   const [userContacts, setUserContacts] = useState<IContactObj[]>([]);
@@ -21,8 +23,11 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const login = async (formData: TLoginFormValues) => {
     try {
       const { data } = await webContactsLocalAPI.post("/login", formData);
-      sessionStorage.setItem("@WEB-CONTACTS:TOKEN", data.token);
-      sessionStorage.setItem("@WEB-CONTACTS:USER-ID", data.userId);
+      sessionStorage.setItem("@WEB-CONTACTS:TOKEN", JSON.stringify(data.token));
+      sessionStorage.setItem(
+        "@WEB-CONTACTS:USER-ID",
+        JSON.stringify(data.userId)
+      );
 
       toast.success("Login bem sucedido!");
 
@@ -58,7 +63,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         `/users/${recoverUserId}`,
         {
           headers: {
-            Authorization: `Bearer ${recoverToken}`,
+            Authorization: `Bearer ${JSON.parse(recoverToken!)}`,
           },
         }
       );
@@ -79,7 +84,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         formData,
         {
           headers: {
-            Authorization: `Bearer ${recoverToken}`,
+            Authorization: `Bearer ${JSON.parse(recoverToken!)}`,
           },
         }
       );
@@ -88,6 +93,31 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       toast.success(`Contato de ${data.fullname} cadastrado!`);
     } catch (error) {
       toast.error("Não foi possível cadastrar o contato!");
+    }
+  };
+
+  const removeContact = async (contactId: string) => {
+    const recoverUserId = sessionStorage.getItem("@WEB-CONTACTS:USER-ID");
+    const recoverToken = sessionStorage.getItem("@WEB-CONTACTS:TOKEN");
+
+    try {
+      await webContactsLocalAPI.delete(
+        `/users/${recoverUserId}/contacts/${JSON.parse(contactId!)}`,
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(recoverToken!)}`,
+          },
+        }
+      );
+
+      const newList = userContacts.filter(
+        (contact) => contact.id != parseInt(contactId)
+      );
+      setUserContacts(newList);
+
+      toast.success(`Contato de ${removeContactInfo?.fullname!} remvovido!`);
+    } catch (error) {
+      toast.error("Não foi possível deletar o contato!");
     }
   };
 
@@ -102,7 +132,10 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         setUserContacts,
         isCreateModalOpen,
         setIsCreateModalOpen,
-        createContact
+        createContact,
+        removeContactInfo,
+        setRemoveContactInfo,
+        removeContact,
       }}
     >
       {children}

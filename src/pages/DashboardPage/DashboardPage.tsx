@@ -4,9 +4,15 @@ import { TemplatePage } from "../../components/TemplatePage/TemplatePage";
 import styles from "./styles.module.scss";
 import { UserContext } from "../../providers/UserContext/UserContext";
 import { CreateContactModal } from "../../components/modals/CreateContactModal/CreateContactModal";
+import { DeleteContactModal } from "../../components/modals/DeleteContactModal/DeleteContactModal";
 export const DashboardPage = () => {
-  const { getUserData, userData, isCreateModalOpen, setIsCreateModalOpen } =
-    useContext(UserContext);
+  const {
+    getUserData,
+    userData,
+    isCreateModalOpen,
+    removeContactInfo,
+    setIsCreateModalOpen,
+  } = useContext(UserContext);
 
   useEffect(() => {
     getUserData();
@@ -42,6 +48,8 @@ export const DashboardPage = () => {
       </section>
 
       {isCreateModalOpen ? <CreateContactModal /> : null}
+      {removeContactInfo ? <DeleteContactModal /> : null}
+      
     </TemplatePage>
   );
 };

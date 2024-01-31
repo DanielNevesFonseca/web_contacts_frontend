@@ -17,4 +17,9 @@ export interface IUserContext {
   userContacts: IContactObj[] | [];
   setUserContacts: React.Dispatch<React.SetStateAction<IContactObj[] | []>>;
   createContact: (formData: TCreateContactValues) => Promise<void>;
+  removeContactInfo: IContactObj | null;
+  setRemoveContactInfo: React.Dispatch<
+    React.SetStateAction<IContactObj | null>
+  >;
+  removeContact: (contactId: string | number) => Promise<void>
 }

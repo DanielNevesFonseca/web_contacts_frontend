@@ -8,7 +8,7 @@ import {
 } from "./CreateContactSchema";
 
 import styles from "./styles.module.scss"
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../../../providers/UserContext/UserContext";
 
 export const CreateContactModal = () => {
