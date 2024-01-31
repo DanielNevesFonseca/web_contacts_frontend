@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <BrowserRouter>
       <UserProvider>
         <App />
-        <ToastContainer theme="dark" autoClose={3 * 1000} />
+        <ToastContainer theme="colored" autoClose={3 * 1000} />
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>

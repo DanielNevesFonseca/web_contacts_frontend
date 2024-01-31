@@ -9,14 +9,14 @@ export const MainRoutes = () => {
   return (
     <Routes>
       <Route element={<ProtectedRoutes />}>
+        <Route path="/dashboard" element={<DashboardPage />} />
       </Route>
 
       <Route element={<PublicRoutes />}>
-      </Route>
-      
-        <Route path="/dashboard" element={<DashboardPage />} />
         <Route path="/" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+      </Route>
+      
     </Routes>
   );
 };

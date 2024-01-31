@@ -28,4 +28,5 @@ export interface IUserContext {
   updateContact: (formData: TUpdateContactValues) => Promise<void>;
   setSearchUser: React.Dispatch<React.SetStateAction<string>>;
   searchUser: string;
+  logout: () => void
 }

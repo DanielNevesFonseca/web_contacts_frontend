@@ -12,20 +12,29 @@ import { TUpdateContactValues } from "../../components/modals/UpdateContactModal
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
-
-  const [searchUser, setSearchUser] = useState("")
-
+  const [searchUser, setSearchUser] = useState("");
 
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [removeContactInfo, setRemoveContactInfo] =
     useState<IContactObj | null>(null);
-  const [editContactInfo, setEditContactInfo] =
-    useState<IContactObj | null>(null);
+  const [editContactInfo, setEditContactInfo] = useState<IContactObj | null>(
+    null
+  );
 
   const [userData, setUserData] = useState<IUserObj | null>(null);
   const [userContacts, setUserContacts] = useState<IContactObj[]>([]);
 
   const navigate = useNavigate();
+
+  const logout = () => {
+    sessionStorage.removeItem("@WEB-CONTACTS:TOKEN");
+    sessionStorage.removeItem("@WEB-CONTACTS:USER-ID");
+    toast.warn("Saindo da sessão...");
+
+    setTimeout(() => {
+      navigate("/");
+    }, 1200);
+  };
 
   const login = async (formData: TLoginFormValues) => {
     try {
@@ -48,8 +57,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   const registerUser = async (formData: TRegisterFormValues) => {
     try {
-      const { data } = await webContactsLocalAPI.post("/users", formData);
-      console.log(data);
+      await webContactsLocalAPI.post("/users", formData);
 
       toast.success("Cadastro bem sucedido!");
 
@@ -169,7 +177,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         setEditContactInfo,
         updateContact,
         setSearchUser,
-        searchUser
+        searchUser,
+        logout,
       }}
     >
       {children}

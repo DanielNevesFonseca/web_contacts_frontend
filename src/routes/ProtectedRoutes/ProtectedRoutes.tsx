@@ -1,7 +1,7 @@
 import { Navigate, Outlet } from "react-router-dom";
 
 export const ProtectedRoutes = () => {
-  const token: boolean = false;
+  const userData = sessionStorage.getItem("@WEB-CONTACTS:TOKEN")
 
-  return <>{token ? <Outlet /> : <Navigate to="/" />}</>;
+  return <>{userData ? <Outlet /> : <Navigate to="/" />}</>;
 };

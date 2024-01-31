@@ -2,7 +2,7 @@ import { Navigate, Outlet } from "react-router-dom";
 
 export const PublicRoutes = () => {
   // mudar após lógica
-  const token: boolean = true;
+  const userData = sessionStorage.getItem("@WEB-CONTACTS:TOKEN")
 
-  return <>{!token ? <Outlet /> : <Navigate to="/dashboard" />}</>;
+  return <>{!userData ? <Outlet /> : <Navigate to="/dashboard" />}</>;
 };
