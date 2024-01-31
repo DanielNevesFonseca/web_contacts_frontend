@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import { UserContext } from "../../providers/UserContext/UserContext";
 
 export const ContactsList = () => {
-  const { userContacts } = useContext(UserContext);
+  const { userContacts, searchUser } = useContext(UserContext);
 
   return (
     <>
@@ -16,9 +16,25 @@ export const ContactsList = () => {
         </div>
       ) : (
         <ul className={`${styles.contactsList}`}>
-          {userContacts?.map((contact) => (
-            <ContactsCard key={contact.id} contactData={contact} />
-          ))}
+          {!searchUser ? (
+            <>
+              {userContacts?.map((contact) => (
+                <ContactsCard key={contact.id} contactData={contact} />
+              ))}
+            </>
+          ) : (
+            <>
+              {userContacts
+                ?.filter((contact) =>
+                  contact.fullname
+                    .toLowerCase()
+                    .includes(searchUser.toLowerCase())
+                )
+                .map((contact) => (
+                  <ContactsCard key={contact.id} contactData={contact} />
+                ))}
+            </>
+          )}
         </ul>
       )}
     </>

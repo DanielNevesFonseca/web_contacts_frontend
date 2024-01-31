@@ -14,6 +14,7 @@ export const DashboardPage = () => {
     removeContactInfo,
     setIsCreateModalOpen,
     editContactInfo,
+    setSearchUser,
   } = useContext(UserContext);
 
   useEffect(() => {
@@ -36,6 +37,9 @@ export const DashboardPage = () => {
               className="input"
               type="text"
               placeholder="Pesquise seu contato por nome"
+              onChange={(e) => {
+                setSearchUser(e.target.value);
+              }}
             />
             <button
               onClick={() => setIsCreateModalOpen(true)}

@@ -12,6 +12,10 @@ import { TUpdateContactValues } from "../../components/modals/UpdateContactModal
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
+
+  const [searchUser, setSearchUser] = useState("")
+
+
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [removeContactInfo, setRemoveContactInfo] =
     useState<IContactObj | null>(null);
@@ -163,7 +167,9 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         removeContact,
         editContactInfo,
         setEditContactInfo,
-        updateContact
+        updateContact,
+        setSearchUser,
+        searchUser
       }}
     >
       {children}

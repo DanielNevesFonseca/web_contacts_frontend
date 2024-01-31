@@ -26,4 +26,6 @@ export interface IUserContext {
   editContactInfo: IContactObj | null;
   setEditContactInfo: React.Dispatch<React.SetStateAction<IContactObj | null>>;
   updateContact: (formData: TUpdateContactValues) => Promise<void>;
+  setSearchUser: React.Dispatch<React.SetStateAction<string>>;
+  searchUser: string;
 }
