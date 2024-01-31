@@ -7,12 +7,15 @@ import { TLoginFormValues } from "../../components/forms/LoginForm/LoginSchema";
 import { TRegisterFormValues } from "../../components/forms/RegisterForm/RegisterFormSchema";
 import { IContactObj, IUserObj } from "../../interfaces/user.interfaces";
 import { TCreateContactValues } from "../../components/modals/CreateContactModal/CreateContactSchema";
+import { TUpdateContactValues } from "../../components/modals/UpdateContactModal/UpdateContactSchema";
 
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [removeContactInfo, setRemoveContactInfo] =
+    useState<IContactObj | null>(null);
+  const [editContactInfo, setEditContactInfo] =
     useState<IContactObj | null>(null);
 
   const [userData, setUserData] = useState<IUserObj | null>(null);
@@ -121,6 +124,28 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
+  const updateContact = async (formData: TUpdateContactValues) => {
+    const recoverUserId = sessionStorage.getItem("@WEB-CONTACTS:USER-ID");
+    const recoverToken = sessionStorage.getItem("@WEB-CONTACTS:TOKEN");
+
+    try {
+      const { data } = await webContactsLocalAPI.patch(
+        `/users/${recoverUserId}/contacts/${editContactInfo?.id!}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(recoverToken!)}`,
+          },
+        }
+      );
+      const newList = [...userContacts, data];
+      setUserContacts(newList);
+      toast.success(`Contato de ${data.fullname} editado!`);
+    } catch (error) {
+      toast.error("Não foi possível editar o contato!");
+    }
+  };
+
   return (
     <UserContext.Provider
       value={{
@@ -136,6 +161,9 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         removeContactInfo,
         setRemoveContactInfo,
         removeContact,
+        editContactInfo,
+        setEditContactInfo,
+        updateContact
       }}
     >
       {children}

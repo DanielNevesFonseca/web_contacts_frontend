@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import { UserContext } from "../../providers/UserContext/UserContext";
 import { CreateContactModal } from "../../components/modals/CreateContactModal/CreateContactModal";
 import { DeleteContactModal } from "../../components/modals/DeleteContactModal/DeleteContactModal";
+import { UpdateContactModal } from "../../components/modals/UpdateContactModal/UpdateContactModal";
 export const DashboardPage = () => {
   const {
     getUserData,
@@ -12,6 +13,7 @@ export const DashboardPage = () => {
     isCreateModalOpen,
     removeContactInfo,
     setIsCreateModalOpen,
+    editContactInfo,
   } = useContext(UserContext);
 
   useEffect(() => {
@@ -49,7 +51,7 @@ export const DashboardPage = () => {
 
       {isCreateModalOpen ? <CreateContactModal /> : null}
       {removeContactInfo ? <DeleteContactModal /> : null}
-      
+      {editContactInfo ? <UpdateContactModal /> : null}
     </TemplatePage>
   );
 };

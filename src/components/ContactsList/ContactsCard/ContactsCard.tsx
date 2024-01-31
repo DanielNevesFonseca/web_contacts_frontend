@@ -10,7 +10,7 @@ interface IContactCardProps {
 }
 
 export const ContactsCard = ({ contactData }: IContactCardProps) => {
-  const { setRemoveContactInfo } = useContext(UserContext);
+  const { setRemoveContactInfo, setEditContactInfo } = useContext(UserContext);
 
   return (
     <li className={`${styles.contactCard}`}>
@@ -24,12 +24,15 @@ export const ContactsCard = ({ contactData }: IContactCardProps) => {
         <button
           onClick={() => {
             setRemoveContactInfo(contactData);
-            console.log(contactData);
           }}
         >
           <img src={TrashIcon} alt="Ícone de lixeira" title="Excluir" />
         </button>
-        <button>
+        <button
+          onClick={() => {
+            setEditContactInfo(contactData);
+          }}
+        >
           <img src={PencilIcon} alt="Ícone de lápis" title="Editar" />
         </button>
       </div>

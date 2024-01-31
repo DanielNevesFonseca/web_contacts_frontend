@@ -25,7 +25,7 @@ export const DeleteContactModal = () => {
         </div>
         <button
           onClick={() =>
-            removeContact(removeContactInfo?.id!).then(() =>
+            removeContact(String(removeContactInfo?.id!)).then(() =>
               setRemoveContactInfo(null)
             )
           }

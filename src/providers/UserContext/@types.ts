@@ -1,6 +1,7 @@
 import { TLoginFormValues } from "../../components/forms/LoginForm/LoginSchema";
 import { TRegisterFormValues } from "../../components/forms/RegisterForm/RegisterFormSchema";
 import { TCreateContactValues } from "../../components/modals/CreateContactModal/CreateContactSchema";
+import { TUpdateContactValues } from "../../components/modals/UpdateContactModal/UpdateContactSchema";
 import { IContactObj, IUserObj } from "../../interfaces/user.interfaces";
 
 export interface IUserProviderProps {
@@ -21,5 +22,8 @@ export interface IUserContext {
   setRemoveContactInfo: React.Dispatch<
     React.SetStateAction<IContactObj | null>
   >;
-  removeContact: (contactId: string | number) => Promise<void>
+  removeContact: (contactId: string) => Promise<void>;
+  editContactInfo: IContactObj | null;
+  setEditContactInfo: React.Dispatch<React.SetStateAction<IContactObj | null>>;
+  updateContact: (formData: TUpdateContactValues) => Promise<void>;
 }
