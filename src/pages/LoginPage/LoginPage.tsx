@@ -7,17 +7,19 @@ export const LoginPage = () => {
   return (
     <TemplatePage>
       <section className={`${styles.mainSection}`}>
-        <div className={`${styles.textBox}`}>
-          <h2 className={`title4`}>Entrar</h2>
-          <p className="text-normal">Faça login e cadastre seus contatos.</p>
-        </div>
+        <div>
+          <div className={`${styles.textBox}`}>
+            <h2 className={`title4`}>Entrar</h2>
+            <p className="text-normal">Faça login e cadastre seus contatos.</p>
+          </div>
 
-        <LoginForm />
+          <LoginForm />
 
-        <div className={`${styles.registerText}`}>
-          <span className="text-sm-normal">
-            Ainda não tem uma conta? <Link to="/register">Cadastre-se</Link>
-          </span>
+          <div className={`${styles.registerText}`}>
+            <span className="text-sm-normal">
+              Ainda não tem uma conta? <Link to="/register">Cadastre-se</Link>
+            </span>
+          </div>
         </div>
       </section>
     </TemplatePage>

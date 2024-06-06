@@ -1,5 +1,4 @@
-.textBox{
-  
+.textBox {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,10 +7,9 @@
   > p {
     color: var(--color-dark-grey);
   }
-
 }
 
-.mainSection{
+.mainSection {
   margin-bottom: 64px;
   display: flex;
   flex-direction: column;
@@ -20,11 +18,17 @@
   width: 100%;
   height: calc(100vh - 150px - 64px);
   gap: 20px;
+
+  > div {
+    border: 1px solid #22646450;
+    padding: 40px;
+    border-radius: 8px;
+  }
 }
 
-.registerText{
-
+.registerText {
   > span > a {
+    
     color: var(--primary-color-light);
   }
 

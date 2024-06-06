@@ -1,5 +1,4 @@
-.textBox{
-  
+.textBox {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -8,10 +7,9 @@
   > p {
     color: var(--color-dark-grey);
   }
-
 }
 
-.mainSection{
+.mainSection {
   margin-bottom: 64px;
   display: flex;
   flex-direction: column;
@@ -21,15 +19,25 @@
   min-height: calc(100vh - 150px);
   gap: 20px;
 
-  > a {
-    width: fit-content;
-    text-decoration: none;
-    margin-bottom: 20px;
+  > div {
+    border: 1px solid #22646450;
+    padding: 40px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+
+    > a {
+      width: fit-content;
+      text-decoration: none;
+      align-self: flex-start;
+    }
   }
 }
 
-.registerText{
-
+.registerText {
   > span > a {
     color: var(--primary-color-light);
   }

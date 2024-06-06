@@ -1,17 +1,22 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import Logo from "../../assets/icons/Logo.svg";
 import WhiteLogo from "../../assets/icons/WhiteLogo.svg";
 import styles from "./styles.module.scss";
 import { UserContext } from "../../providers/UserContext/UserContext";
 
 export const Header = () => {
-  const urlPath = window.location.href;
+  const urlPath = window.location.pathname;
+
+  useEffect(() => {
+    console.log(urlPath);
+    
+  }, [])
 
   const { logout } = useContext(UserContext);
 
   return (
     <>
-      {urlPath !== "http://localhost:5173/dashboard" ? (
+      {urlPath !== "/dashboard" ? (
         <header className={`${styles.header}`}>
           <img src={Logo} alt="Logo da WebContacts" />
         </header>
